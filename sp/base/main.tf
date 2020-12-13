@@ -16,8 +16,14 @@ resource "azuread_service_principal_password" "aad_sp" {
   end_date              = "2022-01-01T01:02:03Z"
 }
 
+resource "random_password" "password_2022" {
+  length                = 16
+  special               = true
+  override_special      = "_%@"
+}
+
 resource "azuread_service_principal_password" "credential_2022" {
   service_principal_id  = azuread_service_principal.aad_sp.id
-  value                 = random_password.aad_sp.result
+  value                 = random_password.password_2022.result
   end_date              = "2022-01-01T01:02:03Z"
 }
