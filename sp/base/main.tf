@@ -15,3 +15,9 @@ resource "azuread_service_principal_password" "aad_sp" {
   value                 = random_password.aad_sp.result
   end_date              = "2022-01-01T01:02:03Z"
 }
+
+resource "azuread_service_principal_password" "credential_2022" {
+  service_principal_id  = azuread_service_principal.aad_sp.id
+  value                 = random_password.aad_sp.result
+  end_date              = "2022-01-01T01:02:03Z"
+}
